@@ -7,4 +7,5 @@
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorAccent">#FFC107</color>
+    <color name="background_translucent_black">#88000000</color>
 </resources>

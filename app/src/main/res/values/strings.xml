@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">BookmarkIT</string>
+    <string name="app_name">Bookmark It</string>
     <string name="title_activity_maps">Map</string>
     <string name="txt_bookmark">Bookmark</string>
     <string name="txt_search_for_city">Search for City</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
