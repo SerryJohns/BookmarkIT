@@ -26,9 +26,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:mt_hint="Search for City"
+        app:mt_hint="@string/txt_search_for_city"
         app:mt_maxSuggestionsCount="10"
-        app:mt_menuIconDrawable="@drawable/common_full_open_on_phone">
+        app:mt_navIconEnabled="true"
+        app:mt_placeholder="@string/txt_search_for_city">
 
     </com.mancj.materialsearchbar.MaterialSearchBar>
 
@@ -37,12 +38,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_menu_mylocation"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_sheet"
+        android:tint="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/fab_show_bookmarked_cities"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_show_bookmarked_cities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_list"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_sheet"
+        app:layout_constraintEnd_toEndOf="@+id/fab_focus_map" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_sheet"
@@ -90,6 +105,12 @@
             android:id="@+id/txt_bookmark_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingTop="@dimen/padding_10"
+            android:paddingRight="@dimen/padding_10"
+            android:paddingBottom="@dimen/padding_10"
             android:text="@string/txt_bookmark"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="@+id/bookmark_icon"
