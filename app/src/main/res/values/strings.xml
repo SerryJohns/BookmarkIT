@@ -3,7 +3,10 @@
     <string name="title_activity_maps">Map</string>
     <string name="txt_bookmark">Bookmark</string>
     <string name="txt_search_for_city">Search for City</string>
+    <string name="search_string">Search for bookmarked city</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_more_info">More info.</string>
+    <string name="txt_hourly">Hourly</string>
 </resources>
