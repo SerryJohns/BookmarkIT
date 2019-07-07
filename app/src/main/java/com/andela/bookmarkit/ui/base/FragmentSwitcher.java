@@ -5,6 +5,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.andela.bookmarkit.MainActivity;
 import com.andela.bookmarkit.R;
+import com.andela.bookmarkit.data.model.City;
+import com.andela.bookmarkit.ui.cities.CityDetailsFragment;
 import com.andela.bookmarkit.ui.map.MapFragment;
 
 
@@ -43,5 +45,10 @@ public class FragmentSwitcher implements FragmentSwitcherInterface {
     @Override
     public void showMapFragment() {
         addFullScreenFragment(MapFragment.newInstance(), false);
+    }
+
+    @Override
+    public void showDetailsFragment(City city) {
+        addFullScreenFragment(CityDetailsFragment.newInstance(city), true);
     }
 }

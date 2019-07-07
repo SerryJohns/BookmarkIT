@@ -16,7 +16,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.andela.bookmarkit.MainActivity;
 import com.andela.bookmarkit.R;
+import com.andela.bookmarkit.data.model.City;
 import com.andela.bookmarkit.ui.base.BaseFragment;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,12 +40,13 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Date;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class MapFragment extends BaseFragment implements OnMapReadyCallback {
-    public static final String TAG = MapFragment.class.getSimpleName();
+    private static final String TAG = MapFragment.class.getSimpleName();
     private static final int REQUEST_LOCATION = 100;
 
     private Place selectedPlace;
@@ -221,8 +224,18 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         txtBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedPlace != null) {
-                    // display details
+                if (selectedPlace != null && selectedPlace.getLatLng() != null) {
+                    MainActivity activity = (MainActivity) getActivity();
+
+                    City city = new City(
+                            new Date(),
+                            selectedPlace.getName(),
+                            selectedPlace.getAddress(),
+                            selectedPlace.getLatLng().latitude,
+                            selectedPlace.getLatLng().longitude
+                    );
+
+                    activity.fragmentSwitcher.showDetailsFragment(city);
                 } else {
                     Toast.makeText(getContext(), getString(R.string.msg_select_city), Toast.LENGTH_SHORT).show();
                 }
@@ -231,7 +244,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     }
 
     private void showBookmarkedCities() {
-        // Show bookmarked cities list
+        // TODO: Show bookmarked cities
     }
 
     @Override

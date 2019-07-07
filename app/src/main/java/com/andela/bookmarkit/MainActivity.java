@@ -11,7 +11,7 @@ import com.andela.bookmarkit.ui.base.FragmentSwitcher;
 
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
-    private FragmentSwitcher fragmentSwitcher;
+    public FragmentSwitcher fragmentSwitcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
