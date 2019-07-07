@@ -1,7 +1,6 @@
 package com.andela.bookmarkit.ui.map;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +36,7 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,14 +47,18 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     private static final int REQUEST_LOCATION = 100;
 
     private Place selectedPlace;
+    private Place currentPlace;
     private PlacesClient placesClient;
     private GoogleMap googleMap;
+    private List<Place.Field> placeFields;
 
     private ConstraintLayout bottomSheet;
     private BottomSheetBehavior bottomSheetBehavior;
     private TextView txtCityName;
     private TextView txtCityDesc;
-    private List<Place.Field> placeFields;
+    private TextView txtBookmark;
+    private FloatingActionButton fabFocusMap;
+    private FloatingActionButton fabCitiesList;
 
     public MapFragment() {
         // Required empty public constructor
@@ -83,6 +87,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         initViews();
         setupAutoCompleteFragment();
         getCurrentLocation();
+        initViewListeners();
     }
 
     private void initMapAndPlaces() {
@@ -108,6 +113,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     private void initViews() {
         txtCityName = (TextView) getActivity().findViewById(R.id.txt_city_name);
         txtCityDesc = (TextView) getActivity().findViewById(R.id.txt_city_desc);
+        fabFocusMap = (FloatingActionButton) getActivity().findViewById(R.id.fab_focus_map);
+        fabCitiesList = (FloatingActionButton) getActivity().findViewById(R.id.fab_cities_list);
+        txtBookmark = (TextView) getActivity().findViewById(R.id.txt_bookmark_text);
     }
 
     private void setupAutoCompleteFragment() {
@@ -139,12 +147,12 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         txtCityDesc.setText(place.getAddress());
     }
 
-    private void updateCameraPosition(Place place) {
+    private void updateCameraPosition(@NonNull Place place) {
         if (place.getLatLng() != null) {
             googleMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15));
         } else {
-            Toast.makeText(getContext(), "Can't move to specified location!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.msg_wrong_location), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -162,6 +170,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
                         if (response.getPlaceLikelihoods().size() > 0) {
                             PlaceLikelihood placeLikelihood = response.getPlaceLikelihoods().get(0);
                             Place place = placeLikelihood.getPlace();
+                            currentPlace = place;
                             updateCameraPosition(place);
                             updateBottomSheet(place);
                         }
@@ -194,18 +203,55 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    private void initViewListeners() {
+        fabFocusMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateCameraPosition(currentPlace);
+            }
+        });
+
+        fabCitiesList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBookmarkedCities();
+            }
+        });
+
+        txtBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedPlace != null) {
+                    // display details
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.msg_select_city), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
+    private void showBookmarkedCities() {
+        // Show bookmarked cities list
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_LOCATION: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getCurrentLocation();
+                } else {
+                    Toast.makeText(getContext(),
+                            getString(R.string.msg_permission_required),
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
     }
 }

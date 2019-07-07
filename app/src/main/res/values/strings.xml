@@ -10,4 +10,7 @@
     <string name="txt_more_info">More info.</string>
     <string name="txt_hourly">Hourly</string>
     <string name="txt_short_description">A short description about the city</string>
+    <string name="msg_select_city">Please first select a city!</string>
+    <string name="msg_permission_required">Location permission required for a better user experience!</string>
+    <string name="msg_wrong_location">Can\'t move to specified location!</string>
 </resources>
