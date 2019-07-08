@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                     CitiesSuggestionsProvider.AUTHORITY, CitiesSuggestionsProvider.MODE);
             suggestions.saveRecentQuery(query, null);
-
-            Log.d("Searching: ", query);
+            fragmentSwitcher.showCitiesFragment(query);
         }
     }
 

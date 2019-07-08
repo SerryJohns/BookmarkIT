@@ -171,7 +171,7 @@ public class CityDetailsFragment extends BaseFragment {
     private void showCitiesListFragment() {
         MainActivity activity = (MainActivity) getActivity();
         activity.fragmentSwitcher.removeFragment(getTag());
-        activity.fragmentSwitcher.showCitiesFragment();
+        activity.fragmentSwitcher.showCitiesFragment("");
     }
 
     private void saveCity(City currentCity) {

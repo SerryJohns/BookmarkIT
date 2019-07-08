@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andela.bookmarkit.R;
 import com.andela.bookmarkit.data.local.model.City;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.andela.bookmarkit.ui.base.Utils.getRandomColor;
 
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.ViewHolder> {
-    private List<City> citiesList;
+    private List<City> citiesList = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
-    public CitiesAdapter(List<City> citiesList, OnItemClickListener onItemClickListener) {
-        this.citiesList = citiesList;
+    public CitiesAdapter(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -74,7 +74,9 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.ViewHolder
         }
     }
 
-    public void updateRecyclerView() {
+    public void updateData(List<City> cities) {
+        citiesList.clear();
+        citiesList.addAll(cities);
         notifyDataSetChanged();
     }
 

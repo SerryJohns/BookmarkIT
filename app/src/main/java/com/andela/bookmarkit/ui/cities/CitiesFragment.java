@@ -25,15 +25,13 @@ import com.andela.bookmarkit.data.local.model.City;
 import com.andela.bookmarkit.ui.base.BaseFragment;
 import com.andela.bookmarkit.ui.base.CustomViewModelFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class CitiesFragment extends BaseFragment {
+    private static final String SEARCH_QUERY = "SEARCH_QUERY";
     private Toolbar toolbar;
-    private RecyclerView citiesRecyclerView;
     private CitiesAdapter citiesAdapter;
-    private List<City> citiesList = new ArrayList<>();
     private TextView txtNoContent;
 
     private CustomViewModelFactory viewModelFactory;
@@ -43,8 +41,12 @@ public class CitiesFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public static CitiesFragment newInstance() {
-        return new CitiesFragment();
+    public static CitiesFragment newInstance(String query) {
+        Bundle bundle = new Bundle();
+        bundle.putString(SEARCH_QUERY, query);
+        CitiesFragment fragment = new CitiesFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -66,9 +68,9 @@ public class CitiesFragment extends BaseFragment {
     private void initViews() {
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         txtNoContent = (TextView) getActivity().findViewById(R.id.txt_no_content);
-        citiesRecyclerView = (RecyclerView) getActivity().findViewById(R.id.cities_recycler_view);
+        RecyclerView citiesRecyclerView = (RecyclerView) getActivity().findViewById(R.id.cities_recycler_view);
 
-        citiesAdapter = new CitiesAdapter(citiesList, onItemClickListener);
+        citiesAdapter = new CitiesAdapter(onItemClickListener);
         citiesRecyclerView.setAdapter(citiesAdapter);
     }
 
@@ -91,19 +93,38 @@ public class CitiesFragment extends BaseFragment {
     }
 
     private void loadCities() {
-        viewModel.getCities().observe(this, new Observer<List<City>>() {
-            @Override
-            public void onChanged(List<City> cities) {
-                if (!cities.isEmpty()) {
-                    txtNoContent.setVisibility(View.GONE);
-                    citiesList.clear();
-                    citiesList.addAll(cities);
-                    citiesAdapter.updateRecyclerView();
-                } else {
-                    txtNoContent.setVisibility(View.VISIBLE);
+        Bundle args = getArguments();
+        String query = args.getString(SEARCH_QUERY);
+
+        if (!query.matches("")) {
+            // Handle search param, search for city
+            query = "%" + query + "%";
+            viewModel.searchCityByName(query).observe(this, new Observer<List<City>>() {
+                @Override
+                public void onChanged(List<City> cities) {
+                    if (!cities.isEmpty()) {
+                        txtNoContent.setVisibility(View.GONE);
+                        citiesAdapter.updateData(cities);
+                    } else {
+                        txtNoContent.setVisibility(View.VISIBLE);
+                    }
                 }
-            }
-        });
+            });
+
+        } else {
+            // No search query, load all cities
+            viewModel.getCities().observe(this, new Observer<List<City>>() {
+                @Override
+                public void onChanged(List<City> cities) {
+                    if (!cities.isEmpty()) {
+                        txtNoContent.setVisibility(View.GONE);
+                        citiesAdapter.updateData(cities);
+                    } else {
+                        txtNoContent.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
     }
 
     @Override

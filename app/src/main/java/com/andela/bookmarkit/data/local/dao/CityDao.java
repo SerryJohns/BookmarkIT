@@ -25,6 +25,9 @@ public interface CityDao {
     @Query("UPDATE city SET description = :description WHERE id = :cityId")
     void updateCity(String description, int cityId);
 
+    @Query("SELECT * FROM city WHERE name LIKE :query")
+    LiveData<List<City>> searchCityByName(String query);
+
     @Insert(onConflict = REPLACE)
     void createCities(City... cities);
 }

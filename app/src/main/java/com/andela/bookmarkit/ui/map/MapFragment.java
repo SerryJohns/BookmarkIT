@@ -40,8 +40,8 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Date;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -218,7 +218,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         fabCitiesList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showBookmarkedCities();
+                showBookmarkedCities("");
             }
         });
 
@@ -244,9 +244,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         });
     }
 
-    private void showBookmarkedCities() {
+    private void showBookmarkedCities(String query) {
         MainActivity activity = (MainActivity) getActivity();
-        activity.fragmentSwitcher.showCitiesFragment();
+        activity.fragmentSwitcher.showCitiesFragment(query);
     }
 
     @Override

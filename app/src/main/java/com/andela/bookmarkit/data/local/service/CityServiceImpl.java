@@ -33,6 +33,11 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public LiveData<List<City>> searchCityByName(String query) {
+        return cityDao.searchCityByName(query);
+    }
+
+    @Override
     public void createCities(City... cities) {
         cityDao.createCities(cities);
     }

@@ -6,5 +6,5 @@ public interface FragmentSwitcherInterface {
     void removeFragment(String tag);
     void showMapFragment();
     void showDetailsFragment(City city);
-    void showCitiesFragment();
+    void showCitiesFragment(String query);
 }

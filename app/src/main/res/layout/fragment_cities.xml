@@ -25,11 +25,12 @@
         android:text="@string/no_content"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/background_translucent_black"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/cities_recycler_view"
-        app:layout_constraintEnd_toEndOf="@+id/cities_recycler_view"
-        app:layout_constraintStart_toStartOf="@+id/cities_recycler_view"
-        app:layout_constraintTop_toTopOf="@+id/cities_recycler_view" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cities_recycler_view"

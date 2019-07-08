@@ -19,4 +19,8 @@ public class CitiesFragmentViewModel extends ViewModel {
     public LiveData<List<City>> getCities() {
         return repo.localStore.getCities();
     }
+
+    public LiveData<List<City>> searchCityByName(String query) {
+        return repo.localStore.searchCityByName(query);
+    }
 }

@@ -54,7 +54,7 @@ public class FragmentSwitcher implements FragmentSwitcherInterface {
     }
 
     @Override
-    public void showCitiesFragment() {
-        addFullScreenFragment(CitiesFragment.newInstance(), true);
+    public void showCitiesFragment(String query) {
+        addFullScreenFragment(CitiesFragment.newInstance(query), true);
     }
 }
