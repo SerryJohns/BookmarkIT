@@ -89,7 +89,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         initBottomSheet();
         initViews();
         setupAutoCompleteFragment();
-        getCurrentLocation();
         initViewListeners();
     }
 
@@ -102,6 +101,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         if (!Places.isInitialized()) {
             Places.initialize(getActivity().getApplicationContext(), getString(R.string.google_maps_api_key));
             placesClient = Places.createClient(getContext());
+            getCurrentLocation();
         }
     }
 
@@ -245,7 +245,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     }
 
     private void showBookmarkedCities() {
-        // TODO: Show bookmarked cities
+        MainActivity activity = (MainActivity) getActivity();
+        activity.fragmentSwitcher.showCitiesFragment();
     }
 
     @Override

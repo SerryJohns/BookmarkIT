@@ -7,14 +7,24 @@
     android:theme="@style/AppTheme.AppBarOverlay"
     tools:context=".ui.cities.CitiesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cities_recycler_view"
+    <include
+        android:id="@+id/top"
+        layout="@layout/app_bar_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cities_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"
         tools:context=".cities.CitiesFragment"
         tools:listitem="@layout/layout_city_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,4 +17,6 @@
     <string name="msg_city_saved">City saved successfully!</string>
     <string name="msg_city_updated">City description updated successfully!</string>
     <string name="err_description_required">A short description is required!</string>
+    <string name="title_search">Search</string>
+    <string name="title_bookmarked_cities">Bookmarked Cities</string>
 </resources>

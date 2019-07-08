@@ -2,7 +2,7 @@
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
     android:hint="@string/search_string"
     android:label="@string/app_name"
-    android:searchSuggestAuthority=""
+    android:searchSuggestAuthority="com.andela.bookmarkit.ui.cities.search.CitiesSuggestionsProvider"
     android:searchSuggestSelection=" ?">
 
 </searchable>

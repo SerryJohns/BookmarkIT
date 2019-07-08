@@ -1,4 +1,4 @@
-package com.andela.bookmarkit.ui.cities;
+package com.andela.bookmarkit.ui.cities.search;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.andela.bookmarkit.R;
 import com.andela.bookmarkit.ui.base.BaseFragment;
