@@ -140,7 +140,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
             @Override
             public void onError(@NonNull Status status) {
                 Toast.makeText(getContext(), status.getStatusMessage(), Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "An error occurred: " + status);
             }
         });
     }
@@ -264,6 +263,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
                     Toast.makeText(getContext(),
                             getString(R.string.msg_permission_required),
                             Toast.LENGTH_SHORT).show();
+                    getCurrentLocation();
                 }
                 break;
             }

@@ -20,9 +20,9 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_API_KEY
+            buildConfigField "String", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_RELEASE_KEY
             buildConfigField "String", "OPEN_WEATHER_API_KEY", OPEN_WEATHER_API_KEY
-            resValue "string", "google_maps_api_key", GOOGLE_MAPS_API_KEY
+            resValue "string", "google_maps_api_key", GOOGLE_MAPS_RELEASE_KEY
             resValue "string", "open_weather_api_key", OPEN_WEATHER_API_KEY
         }
     }
@@ -45,9 +45,6 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:17.0.0"
     implementation "com.google.android.gms:play-services-location:17.0.0"
     implementation "com.google.android.libraries.places:places:1.1.0"
-
-    // TODO: REMOVE THIS
-    implementation "com.github.mancj:MaterialSearchBar:0.8.2"
     implementation "com.google.android.material:material:1.1.0-alpha07"
 
     implementation "androidx.recyclerview:recyclerview:1.1.0-beta01"

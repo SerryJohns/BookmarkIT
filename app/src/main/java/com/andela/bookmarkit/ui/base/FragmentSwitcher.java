@@ -61,6 +61,6 @@ public class FragmentSwitcher implements FragmentSwitcherInterface {
 
     @Override
     public void showForecastFragment(City city) {
-        addFullScreenFragment(ForecastFragment.newInstance(city), false);
+        addFullScreenFragment(ForecastFragment.newInstance(city), true);
     }
 }
