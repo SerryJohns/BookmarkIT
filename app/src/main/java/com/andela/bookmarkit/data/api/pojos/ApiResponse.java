@@ -7,17 +7,16 @@ import java.util.List;
 
 public class ApiResponse {
     @SerializedName("list")
-    private List<WeatherItem> weatherItemList;
+    public List<WeatherItem> weatherItemList;
 
     public ApiResponse(List<WeatherItem> weatherItemList) {
         this.weatherItemList = weatherItemList;
     }
 
-    public List<WeatherItem> getWeatherItemList() {
-        return weatherItemList;
-    }
-
-    public void setWeatherItemList(List<WeatherItem> weatherItemList) {
-        this.weatherItemList = weatherItemList;
+    @Override
+    public String toString() {
+        return "ApiResponse{" +
+                "weatherItemList=" + weatherItemList +
+                '}';
     }
 }

@@ -19,12 +19,6 @@ public class WeatherItem {
     @SerializedName("dt_txt")
     public Date date;
 
-    public WeatherItem(Temperature temperature, List<Weather> weatherList, Date date) {
-        this.temperature = temperature;
-        this.weatherList = weatherList;
-        this.date = date;
-    }
-
     public Uri getIconURI() {
         return weatherList.size() > 0
                 ? weatherList.get(0).getIconURI()
@@ -38,5 +32,20 @@ public class WeatherItem {
     public String getDayString() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E");
         return simpleDateFormat.format(this.date).toUpperCase();
+    }
+
+    public WeatherItem(Temperature temperature, List<Weather> weatherList, Date date) {
+        this.temperature = temperature;
+        this.weatherList = weatherList;
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "WeatherItem{" +
+                "temperature=" + temperature +
+                ", weatherList=" + weatherList +
+                ", date=" + date +
+                '}';
     }
 }

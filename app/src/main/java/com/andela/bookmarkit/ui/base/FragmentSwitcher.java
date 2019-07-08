@@ -8,6 +8,7 @@ import com.andela.bookmarkit.R;
 import com.andela.bookmarkit.data.local.City;
 import com.andela.bookmarkit.ui.cities.CitiesFragment;
 import com.andela.bookmarkit.ui.cities.details.CityDetailsFragment;
+import com.andela.bookmarkit.ui.forecast.ForecastFragment;
 import com.andela.bookmarkit.ui.map.MapFragment;
 
 
@@ -56,5 +57,10 @@ public class FragmentSwitcher implements FragmentSwitcherInterface {
     @Override
     public void showCitiesFragment(String query) {
         addFullScreenFragment(CitiesFragment.newInstance(query), true);
+    }
+
+    @Override
+    public void showForecastFragment(City city) {
+        addFullScreenFragment(ForecastFragment.newInstance(city), false);
     }
 }

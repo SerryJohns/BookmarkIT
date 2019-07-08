@@ -12,7 +12,14 @@ public class Temperature {
     }
 
     public int tempInCelsius() {
-        double celcius = (tempInFahrenheit - 32) * 5 / 9;
-        return (int) Math.round(celcius);
+        double celsius = (tempInFahrenheit - 32) * 5 / 9;
+        return (int) Math.round(celsius);
+    }
+
+    @Override
+    public String toString() {
+        return "Temperature{" +
+                "tempInFahrenheit=" + tempInFahrenheit +
+                '}';
     }
 }

@@ -7,4 +7,5 @@ public interface FragmentSwitcherInterface {
     void showMapFragment();
     void showDetailsFragment(City city);
     void showCitiesFragment(String query);
+    void showForecastFragment(City city);
 }

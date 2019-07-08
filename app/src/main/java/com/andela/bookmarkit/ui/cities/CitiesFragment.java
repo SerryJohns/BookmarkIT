@@ -78,7 +78,7 @@ public class CitiesFragment extends BaseFragment {
         @Override
         public void onItemClick(City city) {
             MainActivity activity = (MainActivity) getActivity();
-            activity.fragmentSwitcher.showDetailsFragment(city);
+            activity.fragmentSwitcher.showForecastFragment(city);
         }
     };
 

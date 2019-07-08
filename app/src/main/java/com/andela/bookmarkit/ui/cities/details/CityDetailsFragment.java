@@ -32,7 +32,6 @@ public class CityDetailsFragment extends BaseFragment {
     private static final String CITY_ADDRESS = "CITY_ADDRESS";
     private static final String CITY_LATITUDE = "CITY_LATITUDE";
     private static final String CITY_LONGITUDE = "CITY_LONGITUDE";
-    private static final String CITY_ID = "CITY_ID";
 
     private City currentCity;
     private Toolbar toolbar;
@@ -52,8 +51,8 @@ public class CityDetailsFragment extends BaseFragment {
         Bundle bundle = new Bundle();
         bundle.putString(CITY_NAME, city.getName());
         bundle.putDouble(CITY_LATITUDE, city.getLatitude());
+        bundle.putString(CITY_ADDRESS, city.getAddress());
         bundle.putDouble(CITY_LONGITUDE, city.getLatitude());
-        bundle.putInt(CITY_ID, city.getId());
 
         CityDetailsFragment fragment = new CityDetailsFragment();
         fragment.setArguments(bundle);
