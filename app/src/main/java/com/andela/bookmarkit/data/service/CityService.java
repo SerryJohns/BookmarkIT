@@ -15,4 +15,6 @@ public interface CityService {
     LiveData<List<City>> getCities();
 
     void createCities(City... cities);
+
+    void updateCity(String description, int cityId);
 }

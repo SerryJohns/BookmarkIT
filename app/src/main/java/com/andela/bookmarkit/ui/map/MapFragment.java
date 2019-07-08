@@ -152,6 +152,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
 
     private void updateCameraPosition(@NonNull Place place) {
         if (place.getLatLng() != null) {
+            googleMap.clear();
             googleMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15));
         } else {

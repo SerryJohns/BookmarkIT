@@ -36,4 +36,9 @@ public class CityServiceImpl implements CityService {
     public void createCities(City... cities) {
         cityDao.createCities(cities);
     }
+
+    @Override
+    public void updateCity(String description, int cityId) {
+        cityDao.updateCity(description, cityId);
+    }
 }

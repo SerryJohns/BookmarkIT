@@ -18,6 +18,7 @@ public class City {
     private String address;
     private double latitude;
     private double longitude;
+    private String description;
 
     public City(Date dateAdded, String name, String address, double latitude, double longitude) {
         this.dateAdded = dateAdded;
@@ -75,6 +76,14 @@ public class City {
         this.longitude = longitude;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "City{" +
@@ -84,6 +93,7 @@ public class City {
                 ", address='" + address + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

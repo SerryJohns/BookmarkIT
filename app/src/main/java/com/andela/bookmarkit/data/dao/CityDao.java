@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.andela.bookmarkit.data.model.City;
 
@@ -21,6 +22,9 @@ public interface CityDao {
 
     @Query("SELECT * FROM city ORDER BY date_added DESC")
     LiveData<List<City>> getCities();
+
+    @Query("UPDATE city SET description = :description WHERE id = :cityId")
+    void updateCity(String description, int cityId);
 
     @Insert(onConflict = REPLACE)
     void createCities(City... cities);

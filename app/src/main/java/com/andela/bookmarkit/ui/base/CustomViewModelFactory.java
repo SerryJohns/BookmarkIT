@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.andela.bookmarkit.data.AppRepo;
 import com.andela.bookmarkit.data.service.CityServiceImpl;
-import com.andela.bookmarkit.ui.cities.CityDetailsFragmentViewModel;
+import com.andela.bookmarkit.ui.cities.details.CityDetailsFragmentViewModel;
 
 public class CustomViewModelFactory implements ViewModelProvider.Factory {
     private AppRepo repo;

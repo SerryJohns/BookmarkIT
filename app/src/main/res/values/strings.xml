@@ -13,4 +13,8 @@
     <string name="msg_select_city">Please first select a city!</string>
     <string name="msg_permission_required">Location permission required for a better user experience!</string>
     <string name="msg_wrong_location">Can\'t move to specified location!</string>
+    <string name="label_save">Save</string>
+    <string name="msg_city_saved">City saved successfully!</string>
+    <string name="msg_city_updated">City description updated successfully!</string>
+    <string name="err_description_required">A short description is required!</string>
 </resources>
