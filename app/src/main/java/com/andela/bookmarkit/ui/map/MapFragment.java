@@ -150,8 +150,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         txtCityDesc.setText(place.getAddress());
     }
 
-    private void updateCameraPosition(@NonNull Place place) {
-        if (place.getLatLng() != null) {
+    private void updateCameraPosition(Place place) {
+        if (place != null && place.getLatLng() != null) {
             googleMap.clear();
             googleMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15));

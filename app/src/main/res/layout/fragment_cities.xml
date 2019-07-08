@@ -16,6 +16,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txt_no_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/no_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/cities_recycler_view"
+        app:layout_constraintEnd_toEndOf="@+id/cities_recycler_view"
+        app:layout_constraintStart_toStartOf="@+id/cities_recycler_view"
+        app:layout_constraintTop_toTopOf="@+id/cities_recycler_view" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cities_recycler_view"
         android:layout_width="match_parent"
@@ -26,5 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top"
         tools:context=".cities.CitiesFragment"
-        tools:listitem="@layout/layout_city_item" />
+        tools:listitem="@layout/layout_city_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

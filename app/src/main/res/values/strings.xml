@@ -19,4 +19,5 @@
     <string name="err_description_required">A short description is required!</string>
     <string name="title_search">Search</string>
     <string name="title_bookmarked_cities">Bookmarked Cities</string>
+    <string name="no_content">No Content</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.andela.bookmarkit.data.AppRepo;
 import com.andela.bookmarkit.data.local.service.CityServiceImpl;
+import com.andela.bookmarkit.ui.cities.CitiesFragmentViewModel;
 import com.andela.bookmarkit.ui.cities.details.CityDetailsFragmentViewModel;
 
 public class CustomViewModelFactory implements ViewModelProvider.Factory {
@@ -24,6 +25,8 @@ public class CustomViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(CityDetailsFragmentViewModel.class)) {
             return (T) new CityDetailsFragmentViewModel(repo);
+        } else if (modelClass.isAssignableFrom(CitiesFragmentViewModel.class)) {
+            return (T) new CitiesFragmentViewModel(repo);
         } else {
             throw new IllegalArgumentException("View Model Not Found!");
         }
