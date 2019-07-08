@@ -5,18 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-
 import com.andela.bookmarkit.R;
+import com.andela.bookmarkit.ui.base.BaseFragment;
 
 
-public class CitiesFragment extends Fragment {
+public class CitiesFragment extends BaseFragment {
 
     public CitiesFragment() {
         // Required empty public constructor
     }
 
-    public static CitiesFragment newInstance(String param1, String param2) {
+    public static CitiesFragment newInstance() {
         return new CitiesFragment();
     }
 
