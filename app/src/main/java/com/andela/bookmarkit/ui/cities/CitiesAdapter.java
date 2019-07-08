@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andela.bookmarkit.R;
-import com.andela.bookmarkit.data.local.model.City;
+import com.andela.bookmarkit.data.local.City;
 
 import java.util.ArrayList;
 import java.util.List;

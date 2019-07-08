@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.andela.bookmarkit.MainActivity;
 import com.andela.bookmarkit.R;
-import com.andela.bookmarkit.data.local.model.City;
+import com.andela.bookmarkit.data.local.City;
 import com.andela.bookmarkit.ui.cities.CitiesFragment;
 import com.andela.bookmarkit.ui.cities.details.CityDetailsFragment;
 import com.andela.bookmarkit.ui.map.MapFragment;

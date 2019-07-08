@@ -1,4 +1,4 @@
-package com.andela.bookmarkit.data.local.model;
+package com.andela.bookmarkit.data.local;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

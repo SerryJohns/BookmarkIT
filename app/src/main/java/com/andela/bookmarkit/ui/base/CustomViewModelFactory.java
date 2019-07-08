@@ -8,7 +8,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.andela.bookmarkit.data.AppRepo;
-import com.andela.bookmarkit.data.local.service.CityServiceImpl;
+import com.andela.bookmarkit.data.api.APIServiceImpl;
+import com.andela.bookmarkit.data.local.CityServiceImpl;
 import com.andela.bookmarkit.ui.cities.CitiesFragmentViewModel;
 import com.andela.bookmarkit.ui.cities.details.CityDetailsFragmentViewModel;
 
@@ -17,7 +18,8 @@ public class CustomViewModelFactory implements ViewModelProvider.Factory {
 
     public CustomViewModelFactory(Context context) {
         CityServiceImpl cityService = new CityServiceImpl(context);
-        repo = new AppRepo(cityService);
+        APIServiceImpl apiService = new APIServiceImpl();
+        repo = new AppRepo(cityService, apiService);
     }
 
     @NonNull

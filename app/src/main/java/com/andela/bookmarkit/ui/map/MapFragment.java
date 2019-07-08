@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import com.andela.bookmarkit.MainActivity;
 import com.andela.bookmarkit.R;
-import com.andela.bookmarkit.data.local.model.City;
+import com.andela.bookmarkit.data.local.City;
 import com.andela.bookmarkit.ui.base.BaseFragment;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;

@@ -7,9 +7,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.andela.bookmarkit.data.local.dao.CityDao;
-import com.andela.bookmarkit.data.local.model.City;
-
 
 @Database(entities = {City.class}, version = 1)
 @TypeConverters({DateTypeConverter.class})
