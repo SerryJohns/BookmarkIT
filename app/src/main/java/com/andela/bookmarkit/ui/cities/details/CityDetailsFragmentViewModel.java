@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.andela.bookmarkit.data.AppRepo;
-import com.andela.bookmarkit.data.model.City;
+import com.andela.bookmarkit.data.local.model.City;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

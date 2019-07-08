@@ -1,6 +1,6 @@
 package com.andela.bookmarkit.ui.base;
 
-import com.andela.bookmarkit.data.model.City;
+import com.andela.bookmarkit.data.local.model.City;
 
 public interface FragmentSwitcherInterface {
     void removeFragment(String tag);

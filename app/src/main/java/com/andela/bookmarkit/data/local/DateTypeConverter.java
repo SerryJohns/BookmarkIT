@@ -1,4 +1,4 @@
-package com.andela.bookmarkit.data;
+package com.andela.bookmarkit.data.local;
 
 
 import androidx.room.TypeConverter;

@@ -1,4 +1,4 @@
-package com.andela.bookmarkit.data;
+package com.andela.bookmarkit.data.local;
 
 import android.content.Context;
 
@@ -7,8 +7,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.andela.bookmarkit.data.dao.CityDao;
-import com.andela.bookmarkit.data.model.City;
+import com.andela.bookmarkit.data.local.dao.CityDao;
+import com.andela.bookmarkit.data.local.model.City;
 
 
 @Database(entities = {City.class}, version = 1)

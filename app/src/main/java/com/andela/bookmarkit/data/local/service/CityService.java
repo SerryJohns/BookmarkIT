@@ -1,9 +1,9 @@
-package com.andela.bookmarkit.data.service;
+package com.andela.bookmarkit.data.local.service;
 
 
 import androidx.lifecycle.LiveData;
 
-import com.andela.bookmarkit.data.model.City;
+import com.andela.bookmarkit.data.local.model.City;
 
 import java.util.List;
 

@@ -1,12 +1,11 @@
-package com.andela.bookmarkit.data.dao;
+package com.andela.bookmarkit.data.local.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
-import com.andela.bookmarkit.data.model.City;
+import com.andela.bookmarkit.data.local.model.City;
 
 import java.util.List;
 

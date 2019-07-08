@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.andela.bookmarkit.MainActivity;
 import com.andela.bookmarkit.R;
-import com.andela.bookmarkit.data.model.City;
+import com.andela.bookmarkit.data.local.model.City;
 import com.andela.bookmarkit.ui.base.BaseFragment;
 import com.andela.bookmarkit.ui.base.CustomViewModelFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
