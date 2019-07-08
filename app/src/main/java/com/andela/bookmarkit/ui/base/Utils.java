@@ -3,6 +3,8 @@ package com.andela.bookmarkit.ui.base;
 
 import com.andela.bookmarkit.R;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 
 public class Utils {
@@ -19,4 +21,10 @@ public class Utils {
         int number = rand.nextInt(4);
         return colors[number];
     }
+
+    public static String getDayString(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E");
+        return simpleDateFormat.format(date).toUpperCase();
+    }
+
 }

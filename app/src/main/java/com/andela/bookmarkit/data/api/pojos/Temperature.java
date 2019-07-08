@@ -5,21 +5,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class Temperature {
     @SerializedName("temp")
-    public Double tempInFahrenheit;
+    public Double tempInKelvin;
 
-    public Temperature(Double tempInFahrenheit) {
-        this.tempInFahrenheit = tempInFahrenheit;
+    public Temperature(Double tempInKelvin) {
+        this.tempInKelvin = tempInKelvin;
     }
 
     public int tempInCelsius() {
-        double celsius = (tempInFahrenheit - 32) * 5 / 9;
+        double celsius = tempInKelvin - 273.15;
         return (int) Math.round(celsius);
     }
 
     @Override
     public String toString() {
         return "Temperature{" +
-                "tempInFahrenheit=" + tempInFahrenheit +
+                "tempInKelvin=" + tempInKelvin +
                 '}';
     }
 }

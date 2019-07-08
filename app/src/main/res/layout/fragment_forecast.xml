@@ -6,17 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.forecast.ForecastFragment">
 
-    <ImageView
-        android:id="@+id/weather_icon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:scaleType="centerCrop"
+    <include
+        android:id="@+id/top"
+        layout="@layout/app_bar_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/weather_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"
         tools:src="@drawable/ic_038_cloudy_3" />
 
     <TextView
@@ -24,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/weather_icon"
@@ -37,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="@+id/txt_city_name"
         app:layout_constraintStart_toStartOf="@+id/txt_city_name"
         app:layout_constraintTop_toBottomOf="@+id/txt_city_name"
@@ -48,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/txt_date"
@@ -66,7 +75,7 @@
         android:focusable="true"
         android:padding="8dp"
         android:text="@string/txt_more_info"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/txt_temperature"
@@ -78,49 +87,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:padding="8dp"
         android:text="@string/txt_hourly"
         android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_more_info" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/line_separator"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/line_separator"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorDivider"
+        app:layout_constraintBottom_toTopOf="@+id/hourly_focus_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/txt_hourly_label"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hourly_label" />
+        app:layout_constraintStart_toStartOf="@+id/txt_hourly_label" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hourly_focus_recycler_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/days_recycler_view"
         app:layout_constraintEnd_toEndOf="@+id/line_separator"
         app:layout_constraintStart_toStartOf="@+id/line_separator"
-        app:layout_constraintTop_toBottomOf="@+id/line_separator"
         tools:listitem="@layout/layout_hourly_focus_item" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/days_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -128,5 +131,13 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:itemCount="5"
         tools:listitem="@layout/layout_day_item" />
+
+    <include
+        android:id="@+id/loader"
+        layout="@layout/include_full_screen_loader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

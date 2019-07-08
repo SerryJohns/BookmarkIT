@@ -2,9 +2,11 @@ package com.andela.bookmarkit.data.api.pojos;
 
 
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -29,9 +31,30 @@ public class WeatherItem {
         return temperature.tempInCelsius();
     }
 
-    public String getDayString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E");
-        return simpleDateFormat.format(this.date).toUpperCase();
+    private String getDateString() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return simpleDateFormat.format(date);
+    }
+
+    public Date getShortDate() {
+        Date date = new Date();
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            date = simpleDateFormat.parse(getDateString());
+        } catch (ParseException e) {
+            Log.e("getShortDate", e.getMessage());
+        }
+        return date;
+    }
+
+    public String getNormalDate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE MM yyyy");
+        return simpleDateFormat.format(date);
+    }
+
+    public String getHours() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh a");
+        return simpleDateFormat.format(date);
     }
 
     public WeatherItem(Temperature temperature, List<Weather> weatherList, Date date) {
