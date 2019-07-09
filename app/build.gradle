@@ -33,7 +33,8 @@ android {
             resValue "string", "open_weather_api_key", OPEN_WEATHER_API_KEY
         }
         release {
-            minifyEnabled true
+            minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_RELEASE_KEY
             buildConfigField "String", "OPEN_WEATHER_API_KEY", OPEN_WEATHER_RELEASE_API_KEY
