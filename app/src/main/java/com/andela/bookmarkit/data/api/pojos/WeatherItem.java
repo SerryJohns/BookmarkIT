@@ -48,7 +48,7 @@ public class WeatherItem {
     }
 
     public String getNormalDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE MM yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE DD yyyy");
         return simpleDateFormat.format(date);
     }
 
