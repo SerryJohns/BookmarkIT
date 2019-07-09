@@ -1,6 +1,19 @@
 apply plugin: 'com.android.application'
 
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.andela.bookmarkit"
@@ -12,6 +25,8 @@ android {
     }
     buildTypes {
         debug {
+            applicationIdSuffix ".debug"
+            debuggable true
             buildConfigField "String", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_API_KEY
             buildConfigField "String", "OPEN_WEATHER_API_KEY", OPEN_WEATHER_API_KEY
             resValue "string", "google_maps_api_key", GOOGLE_MAPS_API_KEY
@@ -21,9 +36,12 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_RELEASE_KEY
-            buildConfigField "String", "OPEN_WEATHER_API_KEY", OPEN_WEATHER_API_KEY
+            buildConfigField "String", "OPEN_WEATHER_API_KEY", OPEN_WEATHER_RELEASE_API_KEY
             resValue "string", "google_maps_api_key", GOOGLE_MAPS_RELEASE_KEY
-            resValue "string", "open_weather_api_key", OPEN_WEATHER_API_KEY
+            resValue "string", "open_weather_api_key", OPEN_WEATHER_RELEASE_API_KEY
+            signingConfig signingConfigs.release
+            applicationIdSuffix = '.release'
+            versionNameSuffix = '1.0'
         }
     }
 }
