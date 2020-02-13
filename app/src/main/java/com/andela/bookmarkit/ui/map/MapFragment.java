@@ -1,6 +1,8 @@
 package com.andela.bookmarkit.ui.map;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +17,18 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.andela.bookmarkit.BuildConfig;
 import com.andela.bookmarkit.MainActivity;
 import com.andela.bookmarkit.R;
 import com.andela.bookmarkit.data.local.City;
+import com.andela.bookmarkit.services.HelloIntentService;
+import com.andela.bookmarkit.services.receivers.Constants;
+import com.andela.bookmarkit.services.receivers.HelloStateReceiver;
+import com.andela.bookmarkit.services.threads.HelloRunnable;
+import com.andela.bookmarkit.services.threads.HelloThreadsManager;
+import com.andela.bookmarkit.services.threads.PhotoTask;
 import com.andela.bookmarkit.ui.base.BaseFragment;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,6 +54,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static com.andela.bookmarkit.services.threads.PhotoTask.PhotoSetRunnable.START_DOWNLOAD;
+
 
 public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     private static final String TAG = MapFragment.class.getSimpleName();
@@ -63,6 +74,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     private TextView txtBookmark;
     private FloatingActionButton fabFocusMap;
     private FloatingActionButton fabCitiesList;
+    private FloatingActionButton fabStartService;
 
     public MapFragment() {
         // Required empty public constructor
@@ -92,6 +104,21 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         initViews();
         setupAutoCompleteFragment();
         initViewListeners();
+
+
+        // Handle Service Receivers
+        handleServiceReceivers();
+    }
+
+    private void handleServiceReceivers() {
+        IntentFilter statusIntentFilter = new IntentFilter(Constants.BROADCAST_ACTION);
+
+        // Register Receiver with the systeme
+        HelloStateReceiver helloStateReceiver = new HelloStateReceiver();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
+                helloStateReceiver,
+                statusIntentFilter
+        );
     }
 
     private void initMapAndPlaces() {
@@ -120,6 +147,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         txtCityDesc = (TextView) getActivity().findViewById(R.id.txt_city_desc);
         fabFocusMap = (FloatingActionButton) getActivity().findViewById(R.id.fab_focus_map);
         fabCitiesList = (FloatingActionButton) getActivity().findViewById(R.id.fab_cities_list);
+        fabStartService = (FloatingActionButton) getActivity().findViewById(R.id.fab_start_service);
         txtBookmark = (TextView) getActivity().findViewById(R.id.txt_bookmark_text);
     }
 
@@ -238,6 +266,33 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
                 } else {
                     Toast.makeText(getContext(), getString(R.string.msg_select_city), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        fabStartService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // start Hello Intent service
+                HelloIntentService myService = new HelloIntentService();
+                Intent intent = new Intent(getActivity(), HelloIntentService.class);
+                intent.putExtra("download_url", "http://someurl");
+
+                MainActivity activity = (MainActivity) getActivity();
+                if (activity != null) {
+                    activity.startService(intent);
+                }
+
+                // Starting a Runnable
+                HelloRunnable helloRunnable = new HelloRunnable();
+                Thread thread = new Thread(helloRunnable);
+                thread.start();
+
+                // Start Threadpool manager
+                Log.d(TAG, "onClick: Starting Threadpool manager");
+                HelloThreadsManager helloThreadsManager = HelloThreadsManager.getInstance();
+                PhotoTask photoTask = new PhotoTask();
+
+                helloThreadsManager.handleState(photoTask, START_DOWNLOAD);
             }
         });
     }
